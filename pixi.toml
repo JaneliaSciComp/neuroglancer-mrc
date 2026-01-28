@@ -1,0 +1,16 @@
+[project]
+name = "cryoem"
+version = "0.1.0"
+description = "Visualize MRC files using Neuroglancer"
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "osx-64", "linux-64"]
+
+[tasks]
+view = "python neuroglancer_mrc.py"
+
+[dependencies]
+python = ">=3.10"
+
+[pypi-dependencies]
+neuroglancer = "*"
+mrcfile = "*"
