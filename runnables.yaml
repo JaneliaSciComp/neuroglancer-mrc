@@ -1,0 +1,30 @@
+name: CryoEM MRC Viewer
+description: Visualize MRC files (cryo-electron microscopy data) using Neuroglancer
+version: "0.1"
+
+requirements:
+  - "pixi>=0.40"
+
+runnables:
+  - id: view
+    name: View MRC File
+    type: service
+    description: Open an MRC file in an interactive Neuroglancer viewer
+    command: pixi run python neuroglancer_mrc.py --bind-address 0.0.0.0
+    parameters:
+      - flag: --mrcfile
+        name: MRC File
+        type: file
+        description: Path to the MRC file to visualize
+        required: true
+
+      - flag: --mmap
+        name: Memory Map
+        type: boolean
+        description: Use memory-mapped file access (recommended for large files)
+        default: false
+
+    resources:
+      cpus: 2
+      memory: "8 GB"
+      walltime: "04:00"

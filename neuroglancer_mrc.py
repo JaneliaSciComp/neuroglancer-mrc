@@ -1,12 +1,11 @@
-# open an MRC file (optionally using mmap) and host it using Neuroglancer as a LocalVolume
-# usage: python -m mrc_neuroglancer.py --mrcfile <filename> [--mmap] [--bind-address ADDRESS]
+# Open an MRC file (optionally using mmap) and host it using Neuroglancer as a LocalVolume.
+# Usage: python neuroglancer_mrc.py --mrcfile <filename> [--mmap] [--bind-address ADDRESS]
 #
-# requirements may be installed from PyPI:
-#    neuroglancer
-#    mrcfile
-
+# When launched by Fileglancer as a service, the viewer URL is written to
+# SERVICE_URL_PATH so it appears in the UI.
 
 import argparse
+import os
 import signal
 
 import neuroglancer
@@ -22,7 +21,9 @@ def add_mrc_layer(state, fname, *, mmap=False):
         d = mrcfile.open(fname, permissive=True)
         layer_name = "mrc"
 
-    state.layers[layer_name] = neuroglancer.ImageLayer(source=neuroglancer.LocalVolume(d.data))
+    state.layers[layer_name] = neuroglancer.ImageLayer(
+        source=neuroglancer.LocalVolume(d.data)
+    )
 
 
 if __name__ == "__main__":
@@ -36,11 +37,15 @@ if __name__ == "__main__":
     neuroglancer.cli.handle_server_arguments(args)
 
     viewer = neuroglancer.Viewer()
-    
-    url_file_path = "/tmp/neuroglancer_viewer_url.txt"
-    with open(url_file_path, "w") as url_file:
-        print(viewer, file=url_file)
-    print(viewer)
+
+    url = str(viewer)
+    print(url, flush=True)
+
+    # Write URL for Fileglancer service discovery
+    service_url_path = os.environ.get("SERVICE_URL_PATH")
+    if service_url_path:
+        with open(service_url_path, "w") as f:
+            f.write(url)
 
     with viewer.txn() as s:
         add_mrc_layer(s, args.mrcfile, mmap=args.mmap)
