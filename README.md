@@ -1,8 +1,8 @@
 # CryoEM MRC Viewer
 
-Based on the [neuroglancer_mrc.py gist](https://gist.github.com/kephale/59a255383e9e1f5f096dedf657a5a091) by [@kephale](https://github.com/kephale). This repo adds [pixi](https://pixi.sh) dependency management and a manifest to run as a [Fileglancer](https://github.com/JaneliaSciComp/fileglancer) app.
-
 Visualize MRC files (cryo-electron microscopy data) using Neuroglancer.
+
+Based on the [neuroglancer_mrc.py gist](https://gist.github.com/kephale/59a255383e9e1f5f096dedf657a5a091) by [@kephale](https://github.com/kephale). This repo adds [pixi](https://pixi.sh) dependency management and a manifest to run as a [Fileglancer](https://github.com/JaneliaSciComp/fileglancer) app.
 
 ## Requirements
 
