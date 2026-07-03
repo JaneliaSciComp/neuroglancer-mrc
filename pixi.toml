@@ -1,4 +1,4 @@
-[project]
+[workspace]
 name = "cryoem"
 version = "0.1.0"
 description = "Visualize MRC files using Neuroglancer"
