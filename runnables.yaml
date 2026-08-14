@@ -18,17 +18,17 @@ runnables:
         type: file
         description: Path to the MRC file to visualize
         required: true
-      # - section: More Input Files
-      #   collapsed: true
-      #   parameters:
-      #     - flag: --mrcfile
-      #       key: input1
-      #       name: MRC File 2
-      #       type: file
-      #     - flag: --mrcfile
-      #       key: input2
-      #       name: MRC File 3
-      #       type: file
+      - section: More Input Files
+        collapsed: true
+        parameters:
+          - flag: --mrcfile
+            key: input2
+            name: MRC File 2
+            type: file
+          - flag: --mrcfile
+            key: input3
+            name: MRC File 3
+            type: file
 
       - flag: --mmap
         name: Memory Map
