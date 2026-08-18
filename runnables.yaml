@@ -29,6 +29,14 @@ runnables:
             key: input3
             name: MRC File 3
             type: file
+          - flag: --mrcfile
+            key: input4
+            name: MRC File 4
+            type: file
+          - flag: --mrcfile
+            key: input5
+            name: MRC File 5
+            type: file
 
       - flag: --mmap
         name: Memory Map
